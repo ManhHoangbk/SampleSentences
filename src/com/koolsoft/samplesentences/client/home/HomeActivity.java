@@ -59,6 +59,8 @@ public class HomeActivity extends BasicActivity {
 			@Override
 			public void onSelection(SelectionEvent<Suggestion> event) {
 				view.refreshView();
+				
+				
 				String word = event.getSelectedItem().getReplacementString();
 				keyWord = word;
 				ClientUtils.log("word: " + word);

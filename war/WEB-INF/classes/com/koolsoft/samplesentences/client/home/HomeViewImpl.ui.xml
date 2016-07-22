@@ -1,0 +1,54 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:b="urn:import:com.googlecode.mgwt.ui.client.widget.button"
+	xmlns:s="urn:import:com.googlecode.mgwt.ui.client.widget.panel.scroll"
+	xmlns:i="urn:import:com.googlecode.mgwt.ui.client.widget.input"
+	xmlns:gwtbootstrap="urn:import:com.github.gwtbootstrap.client.ui"
+	xmlns:gwtbootstrap3="urn:import:org.gwtbootstrap3.client.ui">
+	<ui:style>
+	.important {
+		font-weight: bold;
+	}
+	
+	.panel {
+		width: 94%;
+		margin-left: 3%;
+	}
+	
+	.btnSave {
+		width: 100px;
+		height: 35px;
+		font-size: 19px;
+		margin: 10px 5px 20px 5px;
+	}
+	
+	.panelBtn {
+		text-align: center;
+		width: 100%;
+	}
+	
+	.notifyPanel {
+		text-align: center;
+		font-weight: 700;
+		color: #001fff;
+		font-size: 17px;
+		margin-top: 10px !important;
+	}
+	
+	</ui:style>
+	<g:VerticalPanel width="100%">
+		<g:FlowPanel addStyleNames="{style.notifyPanel}">
+			<g:HTML ui:field="notifySearch"></g:HTML>
+		</g:FlowPanel>
+		<g:VerticalPanel ui:field="sentencePanel"
+			addStyleNames="{style.panel}">
+		</g:VerticalPanel>
+
+		<g:FlowPanel addStyleNames="{style.panelBtn}">
+			<gwtbootstrap3:Button ui:field="btnAdd"
+				styleName="glyphicon glyphicon-plus" addStyleNames="{style.btnSave}"></gwtbootstrap3:Button>
+			<gwtbootstrap3:Button ui:field="btnSave"
+				addStyleNames="{style.btnSave}" styleName="glyphicon glyphicon-save">Save</gwtbootstrap3:Button>
+		</g:FlowPanel>
+	</g:VerticalPanel>
+</ui:UiBinder> 

@@ -1,0 +1,4 @@
+# Module samplesentences
+# RPC service class, partial path of RPC policy file
+com.googlecode.gwtphonegap.client.log.shared.PhoneGapLogService, A71599ED2C7DF62C363FBFE67B47386E.gwt.rpc
+com.koolsoft.samplesentences.client.GreetingService, 19258872F31466B9DEC3B70CCFD892B9.gwt.rpc

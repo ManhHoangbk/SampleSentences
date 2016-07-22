@@ -1,0 +1,2 @@
+serviceClass: com.koolsoft.samplesentences.client.GreetingService
+path: 19258872F31466B9DEC3B70CCFD892B9.gwt.rpc

@@ -1,0 +1,50 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:gwtbootstrap="urn:import:com.github.gwtbootstrap.client.ui"
+	xmlns:gwtbootstrap3="urn:import:org.gwtbootstrap3.client.ui">
+	<ui:style>
+	.important {
+		font-weight: bold;
+	}
+	
+	.textBox {
+		height: 35px !important;
+		margin: 10px 0 10px 0px;
+	}
+	
+	.panel {
+		width: 80%;
+		margin-left: 15%;
+	}
+	
+	.btnRemove {
+		margin: 12px 0 10px 30px;
+		width: 30px;
+		height: 30px !important;
+		background: white;
+		border: 1px solid;
+		border-radius: 100%;
+		color: #e22323;
+	}
+	
+	.panelLeft {
+		float: left;
+		width: 80%;
+	}
+	
+	.panelRight {
+		width: 15%;
+		float: left;
+	}
+	</ui:style>
+	<g:FlowPanel addStyleNames="{style.panel}">
+			<g:FlowPanel addStyleNames="{style.panelLeft}">
+				<gwtbootstrap3:TextBox ui:field="sentence"
+					addStyleNames="{style.textBox}"></gwtbootstrap3:TextBox>
+			</g:FlowPanel>
+			<g:FlowPanel addStyleNames="{style.panelRight}">
+				<g:Button ui:field="btnRemove" styleName="glyphicon glyphicon-remove"
+					addStyleNames="{style.btnRemove}"></g:Button>
+			</g:FlowPanel>
+	</g:FlowPanel>
+</ui:UiBinder> 

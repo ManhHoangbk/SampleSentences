@@ -17,8 +17,6 @@ public interface HomeView  extends BasicView{
 
 	SuggestBox getBox();
 
-	void showSentences(List<String> list);
-
 	List<HomeItemView> getListCheckBoxItem();
 
 	Button getBtnSave();
@@ -38,5 +36,11 @@ public interface HomeView  extends BasicView{
 	void removeFormInput(int index);
 
 	com.google.gwt.user.client.ui.Button getButton();
+
+	void addedSamples(List<String> list);
+
+	void showSentences(List<String> list, int option);
+
+	void loader(Boolean status);
 
 }

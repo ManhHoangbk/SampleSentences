@@ -70,22 +70,32 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 	}
 
 	public int upListWord(List<Word> listWords) {
-//		for (int i = 0; i < listWords.size(); i++) {
-//			Word word = listWords.get(i);
-//			Long id = ofy().save().entity(word).now().getId();
-//			word.setId(id);
-//			addFullTextSearchIndexWord(word);
-//		}
+		// for (int i = 0; i < listWords.size(); i++) {
+		// Word word = listWords.get(i);
+		// Long id = ofy().save().entity(word).now().getId();
+		// word.setId(id);
+		// addFullTextSearchIndexWord(word);
+		// }
 		ofy().save().entities(listWords).now();
 		return listWords.size();
 	}
-	
-	public void addFTSListWord(){
-		
-		List<Word> list=ofy().load().type(Word.class).list();
-		System.out.print("size: "+ list.size());
-		for(int i=list.size()-1;i>0 ;i--){
+
+	public void addFTSListWord() {
+
+		List<Word> list = ofy().load().type(Word.class).list();
+		System.out.print("size: " + list.size());
+		for (int i = list.size() - 1; i > 0; i--) {
 			addFullTextSearchIndexWord(list.get(i));
+		}
+	}
+
+	public void newListSample() {
+		List<Word> list = ofy().load().type(Word.class).list();
+		System.out.print("size: " + list.size());
+		for (int i = list.size() - 1; i >= 0; i--) {
+			Word word = list.get(i);
+			word.setSentence("");
+			ofy().save().entity(word);
 		}
 	}
 
@@ -117,18 +127,20 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 		return new ArrayList<Word>(list);
 	}
 
-//	public void deletelFullTextSearch() {
-//		List<Word> list = ofy().load().type(Word.class).list();
-//		System.out.print("list.size: "+list.size());
-//		for (int i = list.size()-1; i >0; i--) {
-//			String id = String.valueOf(list.get(i).getId());
-//			System.out.println(""+i);
-//			IndexSpec indexSpec = IndexSpec.newBuilder().setName(Constants.WORD_INDEX).build();
-//			Index index = SearchServiceFactory.getSearchService().getIndex(indexSpec);
-//			// Retrieve the Record from the Index
-//			index.delete(id);
-//		}
-//
-//	}
+	// public void deletelFullTextSearch() {
+	// List<Word> list = ofy().load().type(Word.class).list();
+	// System.out.print("list.size: "+list.size());
+	// for (int i = list.size()-1; i >0; i--) {
+	// String id = String.valueOf(list.get(i).getId());
+	// System.out.println(""+i);
+	// IndexSpec indexSpec =
+	// IndexSpec.newBuilder().setName(Constants.WORD_INDEX).build();
+	// Index index =
+	// SearchServiceFactory.getSearchService().getIndex(indexSpec);
+	// // Retrieve the Record from the Index
+	// index.delete(id);
+	// }
+	//
+	// }
 
 }

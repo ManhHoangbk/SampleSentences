@@ -17,19 +17,22 @@
 		padding: 0px 0 0px 4px;
 	}
 	
-	.sentence {
-		width: 100%;
-		float: left;
-	}
+	
 	
 	.rb {
 		width: 100% !important;
+	}
+	
+	.sample {
+		width: 100%;
+    margin: 8px 0 8px 5px;
 	}
 	</ui:style>
 	<g:FlowPanel addStyleNames="{style.panel}">
 		<g:HorizontalPanel>
 			<g:FlowPanel addStyleNames="{style.rb}">
 				<gwtbootstrap:CheckBox ui:field="rb"></gwtbootstrap:CheckBox>
+				<g:HTML ui:field="sample" addStyleNames="{style.sample}"></g:HTML>
 			</g:FlowPanel>
 
 		</g:HorizontalPanel>

@@ -24,10 +24,12 @@ public class HomeItemView extends FlowPanel  {
 	interface HomeItemViewUiBinder extends UiBinder<Widget, HomeItemView> {
 	}
 	@UiField CheckBox rb;
+	@UiField HTML sample;
 	public HomeItemView(String text,int i) {
 		this.add(uiBinder.createAndBindUi(this));
 		rb.setName("rb"+i);
 		rb.setHTML(text);
+		
 	}
 
 

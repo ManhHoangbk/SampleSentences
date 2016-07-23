@@ -35,11 +35,19 @@
 		margin-top: 10px !important;
 	}
 	
+	.addedSamples {
+		width: 94%;
+		margin-left: 3%;
+	}
 	</ui:style>
-	<g:VerticalPanel width="100%">
+	<g:VerticalPanel width="100%" ui:field="panelParent">
 		<g:FlowPanel addStyleNames="{style.notifyPanel}">
 			<g:HTML ui:field="notifySearch"></g:HTML>
 		</g:FlowPanel>
+		<g:VerticalPanel ui:field="addedSamples"
+			addStyleNames="{style.addedSamples}">
+		</g:VerticalPanel>
+
 		<g:VerticalPanel ui:field="sentencePanel"
 			addStyleNames="{style.panel}">
 		</g:VerticalPanel>

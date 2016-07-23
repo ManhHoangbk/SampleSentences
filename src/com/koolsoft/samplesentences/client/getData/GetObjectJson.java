@@ -24,7 +24,7 @@ public class GetObjectJson {
 	public void getObjectJsonbyWord(String word, final AsyncCallback<List<String>> callback) {
 		String postUrl = "http://api.wordnik.com/";
 		String requestData = "v4/word.json/" + word
-				+ "/examples?includeDuplicates=false&useCanonical=true&skip=0&limit=15&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5";
+				+ "/examples?includeDuplicates=false&useCanonical=true&skip=0&limit=30&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5";
 		String url = postUrl + requestData;
 		ClientUtils.log("url: "+url);
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, url);

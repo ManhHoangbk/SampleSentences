@@ -108,6 +108,10 @@ public class ServerUtils extends HttpServlet {
 			impl.addFTSListWord();
 			response.getWriter().append("<br>add oke!!!");
 		}
+		else if(type.equals("newsample")){
+			GreetingServiceImpl impl=new GreetingServiceImpl();
+			impl.newListSample();
+		}
 	
 	}
 }

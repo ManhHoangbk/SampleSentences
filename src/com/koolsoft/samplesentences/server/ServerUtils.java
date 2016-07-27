@@ -65,8 +65,8 @@ public class ServerUtils extends HttpServlet {
 		FileItemFactory fileItemFactory = new DiskFileItemFactory();
 		ServletFileUpload servletFileUpload = new ServletFileUpload(fileItemFactory);
 		servletFileUpload.setHeaderEncoding("UTF-8");
-		final PrintWriter writer = response.getWriter();
-		String result = "";
+//		final PrintWriter writer = response.getWriter();
+//		String result = "";
 		try {
 			FileItemIterator fileItemIterator = servletFileUpload.getItemIterator(request);
 			while (fileItemIterator.hasNext()) {
@@ -108,7 +108,7 @@ public class ServerUtils extends HttpServlet {
 			impl.addFTSListWord();
 			response.getWriter().append("<br>add oke!!!");
 		}
-		else if(type.equals("newsample")){
+		else if(type.equals("newlist")){
 			GreetingServiceImpl impl=new GreetingServiceImpl();
 			impl.newListSample();
 		}

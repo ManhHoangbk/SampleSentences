@@ -84,8 +84,17 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 
 		List<Word> list = ofy().load().type(Word.class).list();
 		System.out.print("size: " + list.size());
-		for (int i = list.size() - 1; i > 0; i--) {
-			addFullTextSearchIndexWord(list.get(i));
+		if (list.size() > 2000) {
+			for (int i = 2000; i >= 0; i--) {
+				addFullTextSearchIndexWord(list.get(i));
+			}
+			for (int i = 2000; i < list.size(); i++) {
+				addFullTextSearchIndexWord(list.get(i));
+			}
+		} else {
+			for (int i = list.size() - 1; i >= 0; i--) {
+				addFullTextSearchIndexWord(list.get(i));
+			}
 		}
 	}
 
@@ -94,7 +103,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 		System.out.print("size: " + list.size());
 		for (int i = list.size() - 1; i >= 0; i--) {
 			Word word = list.get(i);
-			word.setSentence("");
+			word.setSentence(null);
 			ofy().save().entity(word);
 		}
 	}

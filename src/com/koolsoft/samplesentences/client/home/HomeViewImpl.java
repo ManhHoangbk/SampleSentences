@@ -149,6 +149,7 @@ public class HomeViewImpl extends BasicViewImpl implements HomeView {
 		if(option==1){
 			sentencePanel.add(html);
 		}
+		ClientUtils.log("size list checkBox "+list.size());
 		if (list.size() != 0) {
 			for (int i = 0; i < list.size(); i++) {
 				HomeItemView impl = new HomeItemView(list.get(i), i);
@@ -158,6 +159,12 @@ public class HomeViewImpl extends BasicViewImpl implements HomeView {
 			this.btnSave.setVisible(true);
 		}
 
+	}
+	
+	@Override
+	public void clearPanelInput(){
+		listInputItem.clear();
+		sentencePanel.clear();
 	}
 	
 	@Override
@@ -175,7 +182,6 @@ public class HomeViewImpl extends BasicViewImpl implements HomeView {
 			}
 		}
 		this.layout.getPageContentPanel().getElement().setScrollTop(0);
-		sentencePanel.clear();
 		listInputItem.clear();
 	}
 	
@@ -183,8 +189,10 @@ public class HomeViewImpl extends BasicViewImpl implements HomeView {
 	public void loader(Boolean status){
 		if(status){
 			dialog.show();
+			time.schedule(15000);
 		}else{
 			time.schedule(500);
+			time.cancel();
 		}
 		
 	}

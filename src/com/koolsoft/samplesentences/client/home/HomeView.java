@@ -43,4 +43,6 @@ public interface HomeView  extends BasicView{
 
 	void loader(Boolean status);
 
+	void clearPanelInput();
+
 }

@@ -39,7 +39,7 @@ public class HomeActivity extends BasicActivity {
 	private HomeView view;
 	GetObjectJson objectJson = new GetObjectJson();
 	Map<String, Word> hashMap = new HashMap<>();
-	List<String> listSampleOfWord=new ArrayList<>();
+	List<String> listSampleOfWord = new ArrayList<>();
 	private String keyWord;
 
 	public HomeActivity(ClientFactory clientFactory, Place place) {
@@ -109,14 +109,15 @@ public class HomeActivity extends BasicActivity {
 			}
 		}));
 
-//		addHandlerRegistration(view.getButton().addClickHandler(new ClickHandler() {
-//
-//			@Override
-//			public void onClick(ClickEvent event) {
-//				// TODO Auto-generated method stub
-//				deletelListWord();
-//			}
-//		}));															
+		// addHandlerRegistration(view.getButton().addClickHandler(new
+		// ClickHandler() {
+		//
+		// @Override
+		// public void onClick(ClickEvent event) {
+		// // TODO Auto-generated method stub
+		// deletelListWord();
+		// }
+		// }));
 	}
 
 	@Override
@@ -160,7 +161,7 @@ public class HomeActivity extends BasicActivity {
 					ClientUtils.log("size: " + result.size());
 					view.setNotifySearch("");
 				} else {
-					view.showSentences(new ArrayList<String>(),2);
+					view.showSentences(new ArrayList<String>(), 2);
 					view.setNotifySearch("Từ khóa không có trong dữ liệu");
 				}
 			}
@@ -177,41 +178,43 @@ public class HomeActivity extends BasicActivity {
 		objectJson.getObjectJsonbyWord(word, new AsyncCallback<List<String>>() {
 			@Override
 			public void onSuccess(List<String> result) {
-				view.loader(false);
+				
 				ClientUtils.log("size: " + result.size());
 				if (result.size() != 0) {
-					view.showSentences(getNewSample(result),1);
+					view.showSentences(getNewSample(result), 1);
 					view.setNotifySearch("");
 
 				} else {
-//					view.setNotifySearch("Không có dữ liệu hiển thị,nhập dữ liệu tại đây");
+					// view.setNotifySearch("Không có dữ liệu hiển thị,nhập dữ
+					// liệu tại đây");
 					view.getBtnAdd().setVisible(true);
 					view.getBtnSave().setVisible(true);
-					view.showSentences(new ArrayList<String>(),2);
+					view.showSentences(new ArrayList<String>(), 2);
 					ClientUtils.log("list sentences null!!!!");
 				}
+				view.loader(false);
 			}
 
 			@Override
 			public void onFailure(Throwable caught) {
 				// TODO Autosdas-generated method stub
-
+				view.loader(false);
 			}
 		});
 	}
-	
-	private List<String> getNewSample(List<String> list){
-		if(!listSampleOfWord.isEmpty()){
-			for(int i=0;i<listSampleOfWord.size();i++){
-				String sample=listSampleOfWord.get(i);
-				for(int j=0;j<list.size();j++){
-					if(sample.equals(list.get(j))){
+
+	private List<String> getNewSample(List<String> list) {
+		if (!listSampleOfWord.isEmpty()) {
+			for (int i = 0; i < listSampleOfWord.size(); i++) {
+				String sample = listSampleOfWord.get(i);
+				for (int j = 0; j < list.size(); j++) {
+					if (sample.equals(list.get(j))) {
 						list.remove(j);
 					}
 				}
 			}
 		}
-		
+
 		return list;
 	}
 
@@ -233,11 +236,9 @@ public class HomeActivity extends BasicActivity {
 		});
 	}
 
-
 	public void bindItemView() {
 		int i = 0;
 		int j = 0;
-//		JSONObject retObject = new JSONObject();
 		JSONArray arrayVar = new JSONArray();
 		List<String> listSentences = new ArrayList<String>();
 
@@ -257,17 +258,19 @@ public class HomeActivity extends BasicActivity {
 				if (check) {
 					statusClick = true;
 					String text = listCheckBoxItem.get(i).rb.getText();
-					listCheckBoxItem.remove(i);
+					listCheckBoxItem.get(i).removeFromParent();
+//					listCheckBoxItem.remove(i);
 					listSentences.add(text);
 					arrayVar.set(j++, new JSONString(text));
 				}
 			}
-//			retObject.put("sentences", arrayVar);
+			// retObject.put("sentences", arrayVar);
 			if (statusClick) {
-//				Toaster.showToast("Lưu thành công!!!!");
+				// Toaster.showToast("Lưu thành công!!!!");
 				view.loader(true);
-				updateSentence(arrayVar,listSentences);
 				
+				updateSentence(arrayVar, listSentences);
+
 			} else {
 				Toaster.showToast("Bạn chưa chọn câu nào!!!");
 			}
@@ -285,12 +288,13 @@ public class HomeActivity extends BasicActivity {
 				}
 
 			}
-//			retObject.put("sentences", arrayVar);
+			// retObject.put("sentences", arrayVar);
 			if (statusInput == false) {
 				if (j != 0) {
-//					Toaster.showToast("Lưu thành công!!!!");
+					// Toaster.showToast("Lưu thành công!!!!");
 					view.loader(true);
-					updateSentence(arrayVar,listSentences);
+					view.clearPanelInput();
+					updateSentence(arrayVar, listSentences);
 				} else {
 					Toaster.showToast("Chưa nhập dữ liệu!!!!");
 				}
@@ -306,24 +310,24 @@ public class HomeActivity extends BasicActivity {
 
 	// convert from json to tring
 	private List<String> covertToString(String textJson) {
-		List<String >list =new ArrayList<>();
+		List<String> list = new ArrayList<String>();
 		// convert json to string
 		JSONValue jsonValue = JSONParser.parseStrict(textJson);
 		JSONObject object = jsonValue.isObject();
-		ClientUtils.log("size json: " + object.get("sentences").isArray().size());
 		for (int k = 0; k < object.get("sentences").isArray().size(); k++) {
 			String sample = object.get("sentences").isArray().get(k).isString().stringValue();
 			list.add(sample);
-//			ClientUtils.log("text: " + sample);
+			// ClientUtils.log("text: " + sample);
 		}
 		return list;
 	}
 
-	private void updateSentence(JSONArray arrayVar,List<String> listSentence) {
+	private void updateSentence(JSONArray arrayVar, List<String> listSentence) {
 		view.getBox().setText("");
-		JSONObject jsonObject=new JSONObject();
+
+		JSONObject jsonObject = new JSONObject();
 		Word word = hashMap.get(keyWord);
-		for(int i=0;i<listSampleOfWord.size();i++){
+		for (int i = 0; i < listSampleOfWord.size(); i++) {
 			arrayVar.set(arrayVar.size(), new JSONString(listSampleOfWord.get(i)));
 		}
 		jsonObject.put("sentences", arrayVar);
@@ -339,13 +343,14 @@ public class HomeActivity extends BasicActivity {
 				view.loader(false);
 				Toaster.showToast("Lưu thành công!!!");
 				ClientUtils.log("success update");
-				
+
 			}
 
 			@Override
 			public void onFailure(Throwable caught) {
 				// TODO Auto-generated method stub
 				ClientUtils.log("failure update");
+				view.loader(false);
 			}
 		});
 	}
@@ -361,25 +366,16 @@ public class HomeActivity extends BasicActivity {
 			@Override
 			public void onFailure(Throwable caught) {
 				// TODO Auto-generated method stub
-
+				
 			}
 		});
 	}
 
 	private void getObjectWord(String word) {
-		SampleSentences.greetingService.getObjectWord(word, new AsyncCallback<Word>() {
-			@Override
-			public void onSuccess(Word result) {
-				listSampleOfWord=covertToString(result.getSentence());
-				view.addedSamples(listSampleOfWord);
-				ClientUtils.log("a: " + result.getSentence());
-			}
-
-			@Override
-			public void onFailure(Throwable caught) {
-				// TODO Auto-generated method stub
-
-			}
-		});
+		Word objectWord = hashMap.get(word);
+		if (objectWord.getSentence()!=null) {
+			listSampleOfWord.addAll(covertToString(objectWord.getSentence()));
+		}
+		view.addedSamples(listSampleOfWord);
 	}
 }

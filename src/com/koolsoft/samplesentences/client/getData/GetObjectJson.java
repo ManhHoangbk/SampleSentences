@@ -38,13 +38,13 @@ public class GetObjectJson {
 					if (200 == response.getStatusCode()) {
 						JSONValue jsonValue = JSONParser.parseStrict(response.getText());
 						JSONObject object = jsonValue.isObject();
-//						ClientUtils.log("aa: "+object.toString());
+						ClientUtils.log("oke 1");
 						if(object.size()==1){
 							callback.onSuccess(getSentenceByWord(object));
 						}else{
 							callback.onSuccess(new ArrayList<String>());
 						}
-						
+						ClientUtils.log("oke 2");
 					}
 
 				}
